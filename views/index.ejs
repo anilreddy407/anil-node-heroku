@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>
+	Sample Login Page
+</title>
+<script>
+var count = 0
+var wrongData = "Wrong Data<br/><table border = 1><tr><th>Sl.No</th><th>UserName</th><th>PassWord</th></tr>";
+var correctData = "Correct Data<br/><table border = 1><tr><th>Sl.No</th><th>UserName</th><th>PassWord</th></tr>";
+function checkDetails()
+{
+	var userName = document.getElementById("username").value;
+	var passWord = document.getElementById("password").value;
+	count += 1;
+		if (userName != "anil" || passWord != "anil")
+		{
+			wrongData += "<tr><td>"+count+"</td>";
+			wrongData += "<td>"+userName+"</td>";
+			wrongData += "<td>"+passWord+"</td></tr>";
+		}
+		else
+		{
+			correctData += "<tr><td>"+count+"</td>"
+			correctData += "<td>"+userName+"</td>";
+			correctData += "<td>"+passWord+"</td></tr>";
+		}
+		resetValues();		
+}
+function showDetails()
+{
+    setTimeout(function() { displayDetails() },5000)
+}
+function resetValues()
+{
+	document.getElementById("username").value = "";
+	document.getElementById("password").value = "";
+}
+function displayDetails()
+{
+	wrongData += "</table>";
+	correctData += "</table>";
+	document.getElementById("wrongData").innerHTML = wrongData;
+	document.getElementById("correctData").innerHTML = correctData;
+	document.getElementById("username").setAttribute("disabled","disabled");
+	document.getElementById("password").setAttribute("disabled","disabled");
+	document.getElementById("submit").setAttribute("disabled","disabled");
+	document.getElementById("cancel").setAttribute("disabled","disabled");
+}
+</script>
+<LINK href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div>
+<div style = "height:30%;">
+<table>
+<tr><td>User ID:</td><td><input type = "text" name = "username" id = "username"/></td></tr>
+ <tr><td>Password:</td><td><input type = "password" name = "password" id = "password"/></td></tr>
+<tr><td></td></tr>
+<tr><td><button onclick = "checkDetails()" id = "submit">submit</button></td>
+<td><button onclick = "resetValues()" id = "cancel">Cancel</button></td>
+<td><button onclick = "showDetails()" id = "show">Show Results</button></td>
+</tr>
+</table>
+</div>
+<div style="height:70%">
+<div id = "wrongData" style ="height:500px;float:left;width:400px;"></div>
+<div id = "correctData" style ="float:left;left:600px;width:400px;height:500px;"></div>
+</div>
+</div>
+</body>
+</html>
